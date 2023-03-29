@@ -1,0 +1,17 @@
+# IDE
+.idea/
+.vscode/
+
+# Jupyter Notebook
+*.ipynb_checkpoints*
+
+# Python
+*__pycache__*
+
+# Ignore datasets
+Regression_Task/datasets/*
+Regression_Task/models/nn_*
+Regression_Task/models/random_forest_regressor_*
+.DS_Store
+
+Project.org

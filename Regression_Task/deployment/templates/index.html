@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Flight Delays</title>
+        <script src="{{ url_for('static', filename='main.js') }}"></script>
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+                background-color: #F1F5F4;
+                padding: 20px;
+            }
+            .some-container{
+                margin-left: auto;
+                margin-right: auto;
+                max-width: fit-content;
+                margin-top: 40px;
+            }
+            .left {
+                float: left;
+                width: 50%;
+                text-align: left;
+            }
+            .right {
+                float: right;
+                width: 50%;
+                text-align: right;
+            }
+            form {
+                background-color: #fff;
+                border: 1px solid #e5e5e5;
+                border-radius: 2px;
+                box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2);
+                padding: 20px;
+                text-align: center;
+                max-width: fit-content;
+            }
+            iframe{
+                margin-left: auto;
+                margin-right: auto;
+                display: block;
+            }
+            #prediction{
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="some-container">
+            <h1>Flight Delay Prediction</h1>
+            <p>Flight Delay Prediction is a web application that predicts the probability of a flight being delayed. The application is built using Python and Flask.</p>
+            <p>Enter the flight details below to predict the probability of the flight being delayed.</p>
+        </div>
+        <div class="some-container">
+        <form action="{{ url_for('predict') }}" method="post">
+        <!-- onsubmit="predict(event)"> -->
+            <label for="model">Machine Learning Model</label>
+            <select name="model" id="model" required>
+                <option value="Random Forest">Random Forest</option>
+                <option value="NN">Neural Network</option>
+            </select>
+
+            <label for="flight_date">Flight Date</label>
+            <input type="date" id="flight_date" name="flight_date" required><br><br>
+
+            <label for="Airline">Airline</label>
+            <select name="Airline" id="Airline" required></select><br><br>
+
+
+            <label for="Distance">Distance (in miles)</label>
+            <input type="number" id="Distance" name="Distance" min="1" value="100" required><br><br>
+
+            <div class="left">
+                <h3>Departure</h3>
+                <label for="Origin">Origin Airport</label>
+                <select name="OriginAirport" id="OriginAirport" required></select><br><br>
+
+                <label for="CSRDepTime">Scheduled Departure Time (local time)</label>
+                <input type="time" id="CRSDepTime" name="CRSDepTime" required><br><br>
+
+                <label for="OriginState">Origin state</label>
+                <select name="OriginState" id="OriginState" required></select><br><br>
+
+                <label for="OriginCityName">Origin state</label>
+                <select name="OriginCityName" id="OriginCityName" required></select><br><br>
+            </div>
+
+            <div class="right">
+                <h3>Arrival</h3>
+                <label for="Dest">Destination Airport</label>
+                <select id="DestAirport" name="DestAirport" required></select><br><br>
+
+                <label for="CSRArrTime">Scheduled Arrival Time (local time)</label>
+                <input type="time" id="CRSArrTime" name="CRSArrTime" required><br><br>
+
+                <label for="DestState">Destination state</label>
+                <select name="DestState" id="DestState" required></select><br><br>
+
+                <label for="DestCityName">Destination city</label>
+                <select id="DestCityName" name="DestCityName" required></select><br><br>
+            </div>
+            
+            <input type="submit" value="Submit" onclick="predict()">
+        </form>
+        <h2 id="prediction"></h2>
+        </div>
+
+        <div class="some-container" style="margin-top: 100px;">
+        <h2 style="text-align: center;">Data Visualisation of Flight Delay Prediction for Airlines Experiment</h2>
+        <div style="display:flex; flex-wrap: wrap; max-width: 1500px;">
+            <iframe align="left" style="background: #FFFFFF;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2);" width="640" height="480" src="https://charts.mongodb.com/charts-project-0-zohke/embed/charts?id=6421fb36-5df3-4fc6-8ef2-4abeb9816aa2&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
+            <iframe align="left" style="background: #FFFFFF;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2);" width="640" height="480" src="https://charts.mongodb.com/charts-project-0-zohke/embed/charts?id=6421fd9f-525e-4c17-804e-a2ece6a020ad&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
+            <iframe align="left" style="background: #FFFFFF;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2);" width="640" height="480" src="https://charts.mongodb.com/charts-project-0-zohke/embed/charts?id=6421ff90-5df3-4604-8ccc-4abeb985ca73&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
+            <iframe align="left" style="background: #FFFFFF;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2);" width="640" height="480" src="https://charts.mongodb.com/charts-project-0-zohke/embed/charts?id=642200ca-c4dc-499b-8573-ff3824682432&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
+        </div>
+        </div>
+    </body>
+</html>
